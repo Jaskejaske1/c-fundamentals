@@ -1,0 +1,36 @@
+###############################################################################
+# Normalize line endings across platforms
+###############################################################################
+* text=auto
+
+###############################################################################
+# Visual Studio solution & project files: always conflict (merge=binary)
+###############################################################################
+*.sln       merge=binary
+*.vcxproj   merge=binary
+*.filters   merge=binary
+
+###############################################################################
+# Source files: always text, no matter the encoding
+###############################################################################
+*.h text
+*.c text
+
+###############################################################################
+# Common binary formats (cannot be merged meaningfully)
+###############################################################################
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.exe binary
+*.dll binary
+*.lib binary
+
+###############################################################################
+# Optional: uncomment if you add these later
+###############################################################################
+# Office / PDF documents as text for diffs
+#*.docx diff=astextplain
+#*.pdf  diff=astextplain
+#*.rtf  diff=astextplain

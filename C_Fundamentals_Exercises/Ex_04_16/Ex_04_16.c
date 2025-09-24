@@ -1,0 +1,19 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void)
+{
+	// input: 1 22 33 4 5 6
+	int num1, num2, num3, num4, num5, num6;
+
+	printf("Enter 6 integer numbers: ");
+	scanf("%d%d%d%d%d%d%*c", &num1, &num2, &num3, &num4, &num5, &num6);
+
+	printf("-----------------\n");
+	printf("| %3d\t| %3d\t|\n", num1, num2);
+	printf("| %3d\t| %3d\t|\n", num3, num4);
+	printf("| %3d\t| %3d\t|\n", num5, num6);
+	printf("-----------------\n\n");
+
+	return 0;
+}
