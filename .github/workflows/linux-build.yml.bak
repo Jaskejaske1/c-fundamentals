@@ -2,9 +2,9 @@ name: Linux Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -30,8 +30,8 @@ jobs:
               sources=$(find "$project" -type f -name "*.c")
 
               if [ -n "$sources" ]; then
-                echo "Compiling $project_name with -Wall -O2..."
-                gcc -Wall -O2 $sources -o "$BIN_DIR/$project_name" || exit 1
+                echo "Compiling $project_name with -Wall -O2 -lm..."
+                gcc -Wall -O2 $sources -lm -o "$BIN_DIR/$project_name" || exit 1
               else
                 echo "Geen .c-bestanden gevonden in $project_name, overslaan."
               fi

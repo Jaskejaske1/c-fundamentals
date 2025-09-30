@@ -1,0 +1,77 @@
+name: C Exercises Build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  BUILD_CONFIGURATION: Release
+  SOLUTION_FILE_PATH: C_Fundamentals_Exercises/C_Fundamentals_Exercises.sln
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ---------------- Linux ----------------
+      - name: Install GCC
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y gcc
+
+      - name: Build with GCC
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          SRC_DIR="C_Fundamentals_Exercises_linux"
+          BIN_DIR="linux_binaries"
+
+          mkdir -p "$BIN_DIR"
+
+          for project in "$SRC_DIR"/*; do
+            if [ -d "$project" ]; then
+              project_name=$(basename "$project")
+              sources=$(find "$project" -type f -name "*.c")
+
+              if [ -n "$sources" ]; then
+                echo "Compiling $project_name with -Wall -O2 -lm..."
+                gcc -Wall -O2 $sources -lm -o "$BIN_DIR/$project_name" || exit 1
+              else
+                echo "Geen .c-bestanden gevonden in $project_name, overslaan."
+              fi
+            fi
+          done
+
+      - name: Upload Linux binaries
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux_binaries
+          path: linux_binaries
+
+      # ---------------- Windows ----------------
+      - name: Add MSBuild to PATH
+        if: matrix.os == 'windows-latest'
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build with MSBuild
+        if: matrix.os == 'windows-latest'
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+
+      - name: Upload Windows binaries
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows_binaries
+          path: C_Fundamentals_Exercises/x64/${{env.BUILD_CONFIGURATION}}/**
