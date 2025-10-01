@@ -32,7 +32,7 @@ int main(void)
 	}
 	else // March till december
 	{
-		factor = 365 * year + day + 31 * (month - 1) - (0.4 * month + 2.3) + (year / (float)4) - (((year / (float)100) + 1) * (3 / 4));
+		factor = 365 * year + day + 31 * (month - 1) - (0.4 * month + 2.3) + (year / (float)4) - (int)((int)((year / (float)100) + 1) * (3 / 4));
 	}
 
 	weekDay = factor - (int)(factor / 7) * 7;
