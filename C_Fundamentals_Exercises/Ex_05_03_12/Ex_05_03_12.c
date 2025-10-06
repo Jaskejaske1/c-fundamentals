@@ -1,0 +1,51 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void)
+{
+	double base, result = 1;
+	int exponent;
+
+	printf("Enter the base: ");
+	if (scanf("%lf%*c", &base) != 1)
+	{
+		printf("\nInvalid input.\n");
+		return 1;
+	}
+
+	printf("Enter the exponent: ");
+	if (scanf("%d%*c", &exponent) != 1)
+	{
+		printf("\nInvalid input.\n");
+		return 1;
+	}
+
+	if (base == 0 && exponent < 0)
+	{
+		printf("\nUndefined: you cannot raise zero to a negative power.\n");
+		return 1;
+	}
+
+	if (exponent < 0)
+	{
+		exponent *= -1;
+
+		for (int i = 0; i < exponent; i++)
+		{
+			result *= base;
+		}
+
+		result = 1 / result;
+	}
+	else
+	{
+		for (int i = 0; i < exponent; i++)
+		{
+			result *= base;
+		}
+	}
+
+	printf("\nThe result is: %lf\n", result);
+
+	return 0;
+}
