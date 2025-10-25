@@ -19,7 +19,7 @@ int main(void)
 	return 0;
 }
 
-int gcd(long long int number1,long long int number2)
+int gcd(long long int number1, long long int number2)
 {
 	long long int temp;
 	while (number2 != 0)

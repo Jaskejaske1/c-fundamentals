@@ -4,7 +4,7 @@
 int main(void)
 {
 	double current, min = 0, max = 0;
-	int counter;
+	int counter, minPlace, maxPlace;
 
 	for (counter = 0; counter < 10; counter++)
 	{
@@ -18,15 +18,17 @@ int main(void)
 		if (current < min)
 		{
 			min = current;
+			minPlace = counter + 1;
 		}
 		if (current > max)
 		{
 			max = current;
+			maxPlace = counter + 1;
 		}
 	}
 
-	printf("Min: %lf\n", min);
-	printf("Max: %lf\n", max);
+	printf("Min: %lf at place %d\n", min, minPlace);
+	printf("Max: %lf at place %d\n", max, maxPlace);
 
 	return 0;
 }
