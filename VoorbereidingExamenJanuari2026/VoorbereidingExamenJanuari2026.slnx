@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="ElektronicaWinkel/ElektronicaWinkel.vcxproj" Id="935e4de8-3d00-40b7-b0e2-6a3c9ee3926b" />
+  <Project Path="FileIO_01/FileIO_01.vcxproj" Id="013cfa6f-6978-4721-84f6-14ea179bb06c" />
+  <Project Path="Test/Test.vcxproj" Id="01b2eba0-1b72-4515-bb6a-770b6d0b752b" />
+  <Project Path="VoorbeeldoefeningCanvas/VoorbeeldoefeningCanvas.vcxproj" Id="8ded5c80-35f2-4faa-9d4d-f36b9674c527" />
+</Solution>
